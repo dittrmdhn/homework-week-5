@@ -4,10 +4,6 @@ class Pendaftar {
     this.umur = umur;
     this.uangsangu = uangsangu;
   }
-
-  toString() {
-    return `Nama: ${this.nama}, Umur: ${this.umur}, Uang Sangu: ${this.uangsangu}`;
-  }
 }
 
 const dataPendaftar = [];
@@ -51,6 +47,7 @@ const getDataInput = () => {
 };
 
 // tampilkan data dalam table
+
 const displayDataPendaftar = () => {
   const table = document.getElementById("dataPendaftar");
   table.innerHTML = ""; // Bersihkan tabel sebelum menambahkan data baru
@@ -65,9 +62,11 @@ const displayDataPendaftar = () => {
     const cell1 = newRow.insertCell(0);
     const cell2 = newRow.insertCell(1);
     const cell3 = newRow.insertCell(2);
-    cell1.innerHTML = pendaftar.nama;
-    cell2.innerHTML = pendaftar.umur;
-    cell3.innerHTML = parseInt(pendaftar.uangsangu).toLocaleString("id-ID");
+    const cell4 = newRow.insertCell(3);
+    cell1.innerHTML = table.rows.length;
+    cell2.innerHTML = pendaftar.nama;
+    cell3.innerHTML = pendaftar.umur;
+    cell4.innerHTML = parseInt(pendaftar.uangsangu).toLocaleString("id-ID");
 
     totalUmur += parseInt(pendaftar.umur);
     averageUmur = totalUmur / dataPendaftar.length;
@@ -94,26 +93,21 @@ const openTab = (tabName) => {
 
   for (let i = 0; i < tabs.length; i++) {
     tabs[i].style.display = "none";
-    navbarLinks[i].classList.remove("fw-bold", "text-decoration-underline");
+    navbarLinks[i].classList.remove(
+      "fw-bold",
+      "text-decoration-underline",
+      "active"
+    );
   }
 
   document.getElementById(tabName).style.display = "block";
   const activeTab = document.getElementById(`${tabName}-tab`);
 
   if (activeTab) {
-    activeTab.classList.add("fw-bold", "text-decoration-underline");
+    activeTab.classList.add("fw-bold", "text-decoration-underline", "active");
   }
 };
 
-// window.onload = function () {
-//   openTab("registrasi");
-// };
-
-// const openTab = (tabName) => {
-//   const tabs = document.getElementsByClassName("tab-pane");
-//   for (let i = 0; i < tabs.length; i++) {
-//     tabs[i].style.display = "none";
-//   }
-
-//   document.getElementById(tabName).style.display = "block";
-// };
+window.onload = function () {
+  openTab("registrasi");
+};
