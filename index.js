@@ -23,20 +23,22 @@ const getDataInput = () => {
 
   // validasi data
   if (nama.length < 10) {
-    alert("nama minimal 10 karakter");
+    Swal.fire("Error", "Nama minimal 10 karakter", "error");
     namaInput.value = "";
     namaInput.focus();
     return;
   } else if (umur < 25) {
-    alert("umur minimal 25 tahun");
+    Swal.fire("Error", "Umur minimal 25 tahun", "error");
     umurInput.value = "";
     umurInput.focus();
     return;
   } else if (uangsangu < 100000 || uangsangu > 1000000) {
-    alert("uang sangu minimal 100 rb dan maksimal 1 jt");
+    Swal.fire("Error", "Uang sangu minimal 100 rb dan maksimal 1 jt", "error");
     uangsanguInput.value = "";
     umurInput.focus();
     return;
+  } else {
+    Swal.fire("Sukses", "Data berhasil disimpan!", "success");
   }
   // simpan data pendaftar ke array
   const pendaftar = new Pendaftar(nama, umur, uangsangu);
@@ -75,11 +77,11 @@ const displayDataPendaftar = () => {
     totalUangSangu += parseInt(pendaftar.uangsangu);
     averageUangSangu = totalUangSangu / dataPendaftar.length;
 
-    document.getElementById("totalUmur").textContent = totalUmur;
+    // document.getElementById("totalUmur").textContent = totalUmur;
     document.getElementById(
       "averageUmur"
     ).textContent = `${averageUmurFixed} tahun`;
-    document.getElementById("totalUangSangu").textContent = totalUangSangu;
+    // document.getElementById("totalUangSangu").textContent = totalUangSangu;
     document.getElementById(
       "averageUangSangu"
     ).textContent = `Rp. ${averageUangSangu.toLocaleString("id-ID")}`;
@@ -87,7 +89,7 @@ const displayDataPendaftar = () => {
 };
 
 const openTab = (tabName) => {
-  const tabs = document.getElementsByClassName("tab-pane");
+  const tabs = document.getElementsByClassName("tab");
   const navbarLinks = document.getElementsByClassName("nav-link");
 
   for (let i = 0; i < tabs.length; i++) {
